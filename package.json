@@ -17,5 +17,8 @@
     "react-component"
   ],
   "author": "Kevin Clarens",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.14.7"
+  }
 }
