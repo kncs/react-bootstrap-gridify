@@ -1,1 +1,1 @@
-module.exports = require('./src/gridify.react');
+module.exports = require('./src/gridify.jsx');
