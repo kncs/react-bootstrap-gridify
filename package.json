@@ -1,0 +1,21 @@
+{
+  "name": "react-bootstrap-gridify",
+  "version": "1.0.0",
+  "description": "A simple lightbox component for displaying an array of components into a bootstrap grid",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-kncs:kncs/react-bootstrap-gridify.git"
+  },
+  "keywords": [
+    "React",
+    "Bootstrap",
+    "Grid",
+    "react-component"
+  ],
+  "author": "Kevin Clarens",
+  "license": "MIT"
+}
