@@ -13,7 +13,7 @@ import React from 'react';
 const maxBootstrapCols = 12;
 let uniqueIndex = 0;
 let acceptedColNumber = [];
-for(let i=0; i<=maxBootstrapCols; i++) {
+for(let i=1; i<=maxBootstrapCols; i++) {
   acceptedColNumber.push(i);
 }
 
@@ -37,12 +37,6 @@ export default class Gridify extends React.Component {
     if(acceptedColNumber.indexOf(this.props.columns) !== -1) {
       size = Math.floor(maxBootstrapCols/this.props.columns);
       offset = Math.floor((maxBootstrapCols%this.props.columns)/2);
-    } else {
-      if(this.props.columns > maxBootstrapCols) {
-        size = 1;
-      } else {
-        size = 12;
-      }
     }
     return {
       size :size,
@@ -53,9 +47,9 @@ export default class Gridify extends React.Component {
   render() {
     let self = this;
     let colProperties = this.calculBoostrapColProperties();
-    let colSize = this.props.colSize ? this.props.colSize : 'sm';
-    let complementClass = this.props.className ? ' ' + this.props.className : '';
-    let className ='col-'+colSize +'-'+colProperties.size+complementClass;
+    let colSize = this.props.colSize ? this.props.colSize : 'xs';
+    let complementClass = this.props.className ? this.props.className : '';
+    let className ='col-'+colSize +'-'+colProperties.size+' '+complementClass;
     let classNameWithOffset ='col-'+colSize +'-offset-'+colProperties.offset+' '+className;
     return (
       <div>
@@ -67,7 +61,7 @@ export default class Gridify extends React.Component {
               <div className={classNameWithOffset} key={'Col'+index} >{current}</div>
             ]);
           } else {
-            value[Math.floor(index/self.props.columns)].push(
+            value[Math.floor((index)/self.props.columns)].push(
               <div className={className} key={'Col'+index} >{current}</div>
             );
           }
