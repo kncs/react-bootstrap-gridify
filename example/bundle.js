@@ -119,7 +119,9 @@
 	      var self = this;
 	      return function (event) {
 	        event.preventDefault;
-	        self.setState({ columns: self.state.columns - 1 });
+	        if (self.state.columns > 1) {
+	          self.setState({ columns: self.state.columns - 1 });
+	        }
 	      };
 	    }
 	  }, {
@@ -128,7 +130,9 @@
 	      var self = this;
 	      return function (event) {
 	        event.preventDefault;
-	        self.setState({ columns: self.state.columns + 1 });
+	        if (self.state.columns < 12) {
+	          self.setState({ columns: self.state.columns + 1 });
+	        }
 	      };
 	    }
 	  }, {
@@ -19836,7 +19840,7 @@
 	var maxBootstrapCols = 12;
 	var uniqueIndex = 0;
 	var acceptedColNumber = [];
-	for (var i = 0; i <= maxBootstrapCols; i++) {
+	for (var i = 1; i <= maxBootstrapCols; i++) {
 	  acceptedColNumber.push(i);
 	}
 
@@ -19869,12 +19873,6 @@
 	      if (acceptedColNumber.indexOf(this.props.columns) !== -1) {
 	        size = Math.floor(maxBootstrapCols / this.props.columns);
 	        offset = Math.floor(maxBootstrapCols % this.props.columns / 2);
-	      } else {
-	        if (this.props.columns > maxBootstrapCols) {
-	          size = 1;
-	        } else {
-	          size = 12;
-	        }
 	      }
 	      return {
 	        size: size,
@@ -19886,9 +19884,9 @@
 	    value: function render() {
 	      var self = this;
 	      var colProperties = this.calculBoostrapColProperties();
-	      var colSize = this.props.colSize ? this.props.colSize : 'sm';
-	      var complementClass = this.props.className ? ' ' + this.props.className : '';
-	      var className = 'col-' + colSize + '-' + colProperties.size + complementClass;
+	      var colSize = this.props.colSize ? this.props.colSize : 'xs';
+	      var complementClass = this.props.className ? this.props.className : '';
+	      var className = 'col-' + colSize + '-' + colProperties.size + ' ' + complementClass;
 	      var classNameWithOffset = 'col-' + colSize + '-offset-' + colProperties.offset + ' ' + className;
 	      return _react2.default.createElement(
 	        'div',

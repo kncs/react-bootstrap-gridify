@@ -48,7 +48,9 @@ class App extends React.Component {
     let self = this;
     return function(event) {
       event.preventDefault;
-      self.setState({columns : self.state.columns - 1});
+      if(self.state.columns > 1) {
+        self.setState({columns : self.state.columns - 1});
+      }
     };
   }
 
@@ -56,7 +58,9 @@ class App extends React.Component {
     let self = this;
     return function(event) {
       event.preventDefault;
-      self.setState({columns : self.state.columns + 1});
+      if(self.state.columns < 12) {
+        self.setState({columns : self.state.columns + 1});
+      }
     };
   }
 
