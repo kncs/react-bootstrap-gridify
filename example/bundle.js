@@ -75,56 +75,28 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+	var brands = [{ icon: 'fa-github', name: 'Github' }, { icon: 'fa-facebook', name: 'Facebook' }, { icon: 'fa-reddit', name: 'Reddit' }, { icon: 'fa-google', name: 'Google' }, { icon: 'fa-apple', name: 'Apple' }, { icon: 'fa-youtube', name: 'Youtube' }, { icon: 'fa-twitter', name: 'Twitter' }, { icon: 'fa-slack', name: 'Slack' }, { icon: 'fa-linkedin', name: 'Linkedin' }, { icon: 'fa-tripadvisor', name: 'Tripadvisor' }, { icon: 'fa-steam', name: 'Steam' }, { icon: 'fa-vine', name: 'Vine' }, { icon: 'fa-paypal', name: 'Paypal' }, { icon: 'fa-skype', name: 'Skype' }];
+
 	function buidComponentsList() {
-	  return [_react2.default.createElement(
-	    'h2',
-	    { key: '1' },
-	    'Titre 1'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '2' },
-	    'Titre 2'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '3' },
-	    'Titre 3'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '4' },
-	    'Titre 4'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '5' },
-	    'Titre 5'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '6' },
-	    'Titre 6'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '7' },
-	    'Titre 7'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '8' },
-	    'Titre 8'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '9' },
-	    'Titre 9'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '10' },
-	    'Titre 10'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '11' },
-	    'Titre 11'
-	  ), _react2.default.createElement(
-	    'h2',
-	    { key: '12' },
-	    'Titre 12'
-	  )];
+	  return brands.reduce(function (previous, brand) {
+	    var className = 'fa ' + brand.icon + ' fa-stack-1x fa-inverse';
+	    previous.push(_react2.default.createElement(
+	      'div',
+	      { style: { textAlign: 'center' } },
+	      _react2.default.createElement(
+	        'span',
+	        { className: 'fa-stack fa-2x' },
+	        _react2.default.createElement('i', { className: 'fa fa-circle fa-stack-2x' }),
+	        _react2.default.createElement('i', { className: className })
+	      ),
+	      _react2.default.createElement(
+	        'p',
+	        null,
+	        brand.name
+	      )
+	    ));
+	    return previous;
+	  }, []);
 	}
 
 	var App = function (_React$Component) {
@@ -133,16 +105,84 @@
 	  function App() {
 	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this));
+
+	    _this.state = {
+	      columns: 3
+	    };
+	    return _this;
 	  }
 
 	  _createClass(App, [{
+	    key: 'substract',
+	    value: function substract() {
+	      var self = this;
+	      return function (event) {
+	        event.preventDefault;
+	        self.setState({ columns: self.state.columns - 1 });
+	      };
+	    }
+	  }, {
+	    key: 'add',
+	    value: function add() {
+	      var self = this;
+	      return function (event) {
+	        event.preventDefault;
+	        self.setState({ columns: self.state.columns + 1 });
+	      };
+	    }
+	  }, {
+	    key: 'renderColumnSelection',
+	    value: function renderColumnSelection() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'row', style: { margin: '20px' } },
+	        _react2.default.createElement(
+	          'h3',
+	          { className: 'col-xs-6', style: { margin: '0' } },
+	          'How many columns would you like sir?'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'col-xs-2 input-group' },
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'input-group-btn' },
+	            _react2.default.createElement(
+	              'button',
+	              {
+	                className: 'btn btn-default',
+	                onClick: this.substract(),
+	                type: 'button'
+	              },
+	              '-'
+	            )
+	          ),
+	          _react2.default.createElement('input', { disabled: true, type: 'text', className: 'form-control', value: this.state.columns }),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'input-group-btn' },
+	            _react2.default.createElement(
+	              'button',
+	              {
+	                className: 'btn btn-default',
+	                onClick: this.add(),
+	                type: 'button'
+	              },
+	              '+'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
-	        _react2.default.createElement(_index2.default, { columns: 4, components: buidComponentsList() })
+	        this.renderColumnSelection(),
+	        _react2.default.createElement(_index2.default, { columns: this.state.columns, components: buidComponentsList() })
 	      );
 	    }
 	  }]);
@@ -19822,11 +19862,13 @@
 	  }
 
 	  _createClass(Gridify, [{
-	    key: 'calculBoostrapColSize',
-	    value: function calculBoostrapColSize() {
+	    key: 'calculBoostrapColProperties',
+	    value: function calculBoostrapColProperties() {
 	      var size = 1;
+	      var offset = 0;
 	      if (acceptedColNumber.indexOf(this.props.columns) !== -1) {
-	        size = maxBootstrapCols / this.props.columns;
+	        size = Math.floor(maxBootstrapCols / this.props.columns);
+	        offset = Math.floor(maxBootstrapCols % this.props.columns / 2);
 	      } else {
 	        if (this.props.columns > maxBootstrapCols) {
 	          size = 1;
@@ -19834,31 +19876,38 @@
 	          size = 12;
 	        }
 	      }
-	      return size;
+	      return {
+	        size: size,
+	        offset: offset
+	      };
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var self = this;
-	      var bootstrapColSize = this.calculBoostrapColSize();
+	      var colProperties = this.calculBoostrapColProperties();
 	      var colSize = this.props.colSize ? this.props.colSize : 'sm';
 	      var complementClass = this.props.className ? ' ' + this.props.className : '';
-	      var className = 'col-' + colSize + '-' + bootstrapColSize + complementClass;
+	      var className = 'col-' + colSize + '-' + colProperties.size + complementClass;
+	      var classNameWithOffset = 'col-' + colSize + '-offset-' + colProperties.offset + ' ' + className;
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.props.components.reduce(function (prec, current, index) {
-	          var component = _react2.default.createElement(
-	            'div',
-	            { className: className, key: 'Col' + index },
-	            current
-	          );
+	        this.props.components.reduce(function (value, current, index) {
 	          if (index % self.props.columns === 0) {
-	            prec.push([component]);
+	            value.push([_react2.default.createElement(
+	              'div',
+	              { className: classNameWithOffset, key: 'Col' + index },
+	              current
+	            )]);
 	          } else {
-	            prec[Math.floor(index / self.props.columns)].push(component);
+	            value[Math.floor(index / self.props.columns)].push(_react2.default.createElement(
+	              'div',
+	              { className: className, key: 'Col' + index },
+	              current
+	            ));
 	          }
-	          return prec;
+	          return value;
 	        }, []).map(function (row) {
 	          return _react2.default.createElement(
 	            Row,

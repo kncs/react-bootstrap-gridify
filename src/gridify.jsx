@@ -38,7 +38,7 @@ export default class Gridify extends React.Component {
       size = Math.floor(maxBootstrapCols/this.props.columns);
       offset = Math.floor((maxBootstrapCols%this.props.columns)/2);
     } else {
-      if(this.props.columns >= maxBootstrapCols) {
+      if(this.props.columns > maxBootstrapCols) {
         size = 1;
       } else {
         size = 12;
@@ -61,17 +61,17 @@ export default class Gridify extends React.Component {
       <div>
       {
         this.props.components
-        .reduce(function(prec, current, index){
+        .reduce(function(value, current, index){
           if(index%self.props.columns === 0) {
-            prec.push([
+            value.push([
               <div className={classNameWithOffset} key={'Col'+index} >{current}</div>
             ]);
           } else {
-            prec[Math.floor(index/self.props.columns)].push(
+            value[Math.floor(index/self.props.columns)].push(
               <div className={className} key={'Col'+index} >{current}</div>
             );
           }
-          return prec;
+          return value;
         }, [])
         .map(function(row) {
           return <Row key={'Row'+uniqueIndex++}>{row}</Row>;
