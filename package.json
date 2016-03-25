@@ -1,7 +1,7 @@
 {
   "name": "react-bootstrap-gridify",
   "version": "1.0.0",
-  "description": "A simple lightbox component for displaying an array of components into a bootstrap grid",
+  "description": "A simple react component for displaying an array of components into a bootstrap grid",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
