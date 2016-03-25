@@ -24,7 +24,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Gridify columns={4} components={this.buidComponentsList()}/>
+        <Gridify columns={{xs:2, sm:4, md:8, lg:12}} components={this.buidComponentsList()}/>
       </div>
     );
   }
@@ -58,10 +58,10 @@ And finally enjoy:
 
 The following otions are provided :
 
-| Name          | Description                                   | Default   |
-|:--------------|:----------------------------------------------|:---------:|
-| components    | Array of compenents you want to display       | []        |
-| columns       | Number of columns                             | 1         |
+| Name          | Description                                          | Default   |
+|:--------------|:-----------------------------------------------------|:---------:|
+| components    | Array of compenents you want to display              | []        |
+| columns       | Object representing number of columns wanted by type | {xs:1}    |
 
 # License
 
