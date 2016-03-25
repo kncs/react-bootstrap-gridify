@@ -5,17 +5,18 @@
  */
 
 import React from 'react';
+import constantsBootstrap from './constants-bootstrap';
 
 /**
  * Init variables
  */
 
-const maxBootstrapCols = 12;
 let uniqueIndex = 0;
-let acceptedColNumber = [];
-for(let i=1; i<=maxBootstrapCols; i++) {
-  acceptedColNumber.push(i);
-}
+
+
+/**
+ * Define pure function Row
+ */
 
 function Row(props) {
   return (
@@ -25,43 +26,91 @@ function Row(props) {
   );
 }
 
+
 /**
  * Define and Expose Gridify react component
  */
 
 export default class Gridify extends React.Component {
+  constructor() {
+    super();
+    this.state = {windowWidth: window.innerWidth};
+  }
 
-  calculBoostrapColProperties() {
-    let size = 1;
-    let offset = 0;
-    if(acceptedColNumber.indexOf(this.props.columns) !== -1) {
-      size = Math.floor(maxBootstrapCols/this.props.columns);
-      offset = Math.floor((maxBootstrapCols%this.props.columns)/2);
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize());
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize());
+  }
+
+  handleResize() {
+    let self = this;
+    return function () {
+      self.setState({windowWidth: window.innerWidth});
+    };
+  }
+
+  getColsProperties() {
+    let number = 1, type = 'xs', offset = 0, size = 12;
+
+    if (this.props.columns) {
+      if(this.state.windowWidth < constantsBootstrap.queries.sm) {
+        type = 'xs';
+        number = this.props.columns.xs || 1;
+      } else if (this.state.windowWidth < constantsBootstrap.queries.md) {
+        type = 'sm';
+        number = this.props.columns.sm
+          || this.props.columns.xs
+          || 1;
+
+      } else if (this.state.windowWidth < constantsBootstrap.queries.lg) {
+        type = 'md';
+        number = this.props.columns.md
+          || this.props.columns.sm
+          || this.props.columns.xs
+          || 1;
+
+      } else {
+        type = 'lg';
+        number = this.props.columns.lg
+          || this.props.columns.md
+          || this.props.columns.sm
+          || this.props.columns.xs
+          || 1;
+      }
     }
+
+    if(number > 0 || number < constantsBootstrap.maxCol) {
+      size = Math.floor(constantsBootstrap.maxCol/number);
+      offset = Math.floor((constantsBootstrap.maxCol%number)/2);
+    }
+
     return {
-      size :size,
-      offset: offset
+      number : number,
+      size : size,
+      offset: offset,
+      type :type
     };
   }
 
   render() {
-    let self = this;
-    let colProperties = this.calculBoostrapColProperties();
-    let colSize = this.props.colSize ? this.props.colSize : 'xs';
+    let cols = this.getColsProperties();
     let complementClass = this.props.className ? this.props.className : '';
-    let className ='col-'+colSize +'-'+colProperties.size+' '+complementClass;
-    let classNameWithOffset ='col-'+colSize +'-offset-'+colProperties.offset+' '+className;
+    let className ='col-' + cols.type + '-' + cols.size + ' ' + complementClass;
+    let classNameWithOffset ='col-' + cols.type + '-offset-' + cols.offset + ' '+ className;
     return (
       <div>
       {
         this.props.components
         .reduce(function(value, current, index){
-          if(index%self.props.columns === 0) {
+          if(index%cols.number === 0) {
             value.push([
               <div className={classNameWithOffset} key={'Col'+index} >{current}</div>
             ]);
           } else {
-            value[Math.floor((index)/self.props.columns)].push(
+            value[Math.floor((index)/cols.number)].push(
               <div className={className} key={'Col'+index} >{current}</div>
             );
           }

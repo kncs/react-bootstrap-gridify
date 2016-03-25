@@ -37,67 +37,11 @@ function buidComponentsList() {
 }
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      columns : 3
-    };
-  }
-
-  substract() {
-    let self = this;
-    return function(event) {
-      event.preventDefault;
-      if(self.state.columns > 1) {
-        self.setState({columns : self.state.columns - 1});
-      }
-    };
-  }
-
-  add() {
-    let self = this;
-    return function(event) {
-      event.preventDefault;
-      if(self.state.columns < 12) {
-        self.setState({columns : self.state.columns + 1});
-      }
-    };
-  }
-
-  renderColumnSelection() {
-    return (
-      <div className="row" style={{margin:'20px'}}>
-        <h3 className="col-xs-6" style={{margin:'0'}}>{'How many columns would you like sir?'}</h3>
-        <div className="col-xs-2 input-group">
-          <span className="input-group-btn">
-            <button
-                className="btn btn-default"
-                onClick={this.substract()}
-                type="button"
-            >
-              {'-'}
-            </button>
-          </span>
-          <input disabled type="text" className="form-control" value={this.state.columns}/>
-          <span className="input-group-btn">
-            <button
-                className="btn btn-default"
-                onClick={this.add()}
-                type="button"
-            >
-              {'+'}
-            </button>
-          </span>
-        </div>
-      </div>
-    );
-  }
-
   render() {
     return (
       <div className="container">
-        {this.renderColumnSelection()}
-        <Gridify columns={this.state.columns} components={buidComponentsList()}/>
+        <h2 style={{textAlign: 'center', marginBottom: '50px'}}>{'A Simple example with \"columns\" property set to {xs:3, sm:8, lg:12}'}</h2>
+        <Gridify columns={{xs:3, sm:8, lg:12}} components={buidComponentsList()}/>
       </div>
     );
   }
