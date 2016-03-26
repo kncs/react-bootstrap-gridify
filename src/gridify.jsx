@@ -4,8 +4,8 @@
  * Module dependencies
  */
 
-import React from 'react';
-import constantsBootstrap from './constants-bootstrap';
+const React = require('react');
+const constantsBootstrap = require('./constants-bootstrap');
 
 /**
  * Init variables
@@ -31,7 +31,7 @@ function Row(props) {
  * Define and Expose Gridify react component
  */
 
-export default class Gridify extends React.Component {
+class Gridify extends React.Component {
   constructor() {
     super();
     this.state = {windowWidth: window.innerWidth};
@@ -124,3 +124,5 @@ export default class Gridify extends React.Component {
     );
   }
 }
+
+module.exports = Gridify;

@@ -4,7 +4,7 @@
  * Define bootstrap constants
  */
 
-export default {
+module.exports = {
   maxCol : 12,
   queries : {
     sm : 768,
