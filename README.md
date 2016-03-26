@@ -1,4 +1,4 @@
-# React Bootstrap Gridify(Draft)
+# React Bootstrap Gridify
 
 Because card-based design is emerging, I created a component to help me (and others) to manage that trend. Gridify is a really simple React component for displaying a list of whatever you want into a bootstrap grid.
 
@@ -39,18 +39,9 @@ ReactDOM.render(<App />, document.getElementById('app'));
 
 # Installation
 
-For now this only a draft, but if you want to play with it, clone the repository, install dependencies:
 ```bash
-$ npm install
+$ npm install --save react-bootstrap-gridify
 ```
-
-Serve example:
-```bash
-$ webpack-dev-server --content-base example/
-```
-
-And finally enjoy:
-[http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/)
 
 # API Reference
 
