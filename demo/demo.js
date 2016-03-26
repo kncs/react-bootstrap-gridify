@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Gridify from '../index';
+import Gridify from '../src/Gridify';
 
 let brands = [
   {icon : 'fa-github', name : 'Github'},
