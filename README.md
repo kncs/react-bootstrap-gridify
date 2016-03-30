@@ -2,6 +2,8 @@
 
 Because card-based design is emerging, I created a component to help me (and others) to manage that trend. Gridify is a really simple React component for displaying a list of whatever you want into a bootstrap grid.
 
+[Demo](http://kncs.github.io/react-bootstrap-gridify/)
+
 # Code Example
 
 ```javascript
