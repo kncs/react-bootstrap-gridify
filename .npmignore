@@ -1,7 +1,0 @@
-.git
-npm-debug.log
-.gitignore
-src
-test
-demo
-webpack.config*
