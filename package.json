@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-gridify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple react component for displaying an array of components into a bootstrap grid",
   "main": "lib/Gridify.js",
   "umd": "umd/Gridify.js",

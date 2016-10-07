@@ -116,8 +116,8 @@ export default class Gridify extends React.Component {
           }
           return value;
         }, [])
-        .map(function(row) {
-          return <Row key={'Row'+uniqueIndex++}>{row}</Row>;
+        .map(function(row, index) {
+          return <Row key={'Row'+index}>{row}</Row>;
         })
       }
       </div>
